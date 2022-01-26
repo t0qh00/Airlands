@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonnymous"/>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>AirLands</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background-image: url(img/sky-690293_1920.jpg)">
+        <div class="container" style="margin: 20px">
+            <div class="row">
+                <div class="col-12" style="margin-left: 100px">
+                    <img src="img/cambio.png" width="100%" height="150px"/> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" style="margin-left: 100px">
+                    <h:form>
+                        <p:breadCrumb>
+                            <p:menuitem value="Inicio" url=""/>
+                            <p:menuitem value="User data" url="regUser.xhtml" />
+                            <p:menuitem value="Products" url="admin.xhtml" />
+                            <p:menuitem value="Bill" url="reportRent.xhtml" />
+                            <p:menuitem value="Logout" url="home.xhtml" />
+                        </p:breadCrumb>
+                    </h:form>
+                </div>
+            </div>
+            <div class="row" style="margin: 20px">
+                <div class="col-12">
+                    <h1 style="color: white ; margin: 40px">User registration</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7" style="margin: 20px">
+                    <h:form >
+                        <p:panel style="margin-left: 90px">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Nombre de usuario: "/>
+                                <p:inputText value="#{loginDAO.admin.usuario}" required="true" maxlength="45"/>
+                                <p:outputLabel value="Contraseña: "/>
+                                <p:password value="#{loginDAO.admin.contraseña}" required="true" maxlength="45"/>
+                                <p:commandButton action="#{loginDAO.guardarAdmin()}" value="Save"/>
+                            </p:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </div>
+            </div>
+            <div class="row" style="margin: 20px">
+                <div class="col-12">
+                    <h1 style="color: white ; margin: 40px">Report users</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" style="margin-left: 100px">
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <h:form id="formCrud">
+                        <p:panel header="Users report">
+                            <p:dataTable value="#{loginDAO.listaAdmin}" var="users" paginator="true" rows="5"
+                                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                                         rowsPerPageTemplate="5,10,15" editable="true" id="userTable" lazy="true">
+                                <p:column headerText="Usuario">
+                                    <p:outputLabel value="#{users.usuario}"/>
+                                </p:column>
+                                <p:column headerText="Contraseña">
+                                    <p:outputLabel value="#{users.contraseña}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:commandButton action="#{loginDAO.deleteA(users.usuario)}" value="Delete" update=":growl"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

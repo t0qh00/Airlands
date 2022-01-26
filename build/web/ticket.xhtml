@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonnymous"/>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>AirLands</title>
+        </f:facet>
+    </h:head>
+    <h:body style="background-image: url(img/sky-690293_1920.jpg)">
+        <div class="container" style="margin: 20px">
+            <div class="row">
+                <div class="col-12" style="margin-left: 100px">
+                    <img src="img/cambio.png" width="100%" height="150px"/> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" style="margin-left: 100px">
+                    <p:breadCrumb>
+                        <p:menuitem value="Inicio" url="home.xhtml"/>
+                        <p:menuitem value="About Us" url="aboutUs.xhtml" />
+                        <p:menuitem value="Products" url="products.xhtml" />
+                        <p:menuitem value="Gallery" url="gallery.xhtml" />
+                        <p:menuitem value="Contact Us" url="contact.xhtml" />
+                    </p:breadCrumb>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h1 style="color: white ; margin: 40px">Rent</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h:form>
+                        <p:panel style="margin-left: 90px">
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Nombre de la cuenta: "/>
+                                <p:outputLabel value="#{productosDAO.factura.usuario}"/>
+                                <p:outputLabel value="Vehiculo: "/>
+                                <p:outputLabel value="#{productosDAO.factura.nombreA}"/>
+                                <p:outputLabel value="Dias de alquiler: "/>
+                                <p:outputLabel value="#{productosDAO.factura.fecha}"/>
+                                <p:outputLabel value="Monto final: "/>
+                                <p:outputLabel value="#{productosDAO.factura.monto}"/>
+                                <p:commandButton action="#{productosDAO.guardarF()}" value="Finalizar"/>
+                                <p:commandButton action="#{productosDAO.cancelar()}" value="Cancelar"/>
+                            </p:panelGrid>
+                        </p:panel>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
